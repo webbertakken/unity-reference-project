@@ -1,0 +1,75 @@
+﻿name: CI 🧪
+
+on:
+  workflow_dispatch: {}
+  pull_request: {}
+  push: { branches: [main, develop] }
+
+jobs:
+  ###############################
+  #             Test            #
+  ###############################
+  test:
+    name: ${{ matrix.testMode }} ✨
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        testMode:
+          - EditMode
+          - PlayMode
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          lfs: true
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-Test
+          restore-keys: |
+            Library-
+      - uses: game-ci/unity-test-runner@v2.0-alpha-5
+        id: testRunner
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          testMode: ${{ matrix.testMode }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Test results (${{ matrix.testMode }})
+          path: ${{ steps.testRunner.outputs.artifactsPath }}
+
+  ###############################
+  #            Build            #
+  ###############################
+  build:
+    name: ${{ matrix.targetPlatform }} 🚀
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          - StandaloneOSX
+          - StandaloneWindows64
+          - StandaloneLinux64
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          lfs: true
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-Build-${{ matrix.targetPlatform }}
+          restore-keys: |
+            Library-Build-
+            Library-
+      - uses: game-ci/unity-builder@38695bb26e1c15f43419ed9ab30c4bb7f92db311
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          targetPlatform: ${{ matrix.targetPlatform }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build (${{ matrix.targetPlatform }})
+          path: build/${{ matrix.targetPlatform }}
