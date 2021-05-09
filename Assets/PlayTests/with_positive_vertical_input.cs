@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using NSubstitute;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -20,10 +21,10 @@ namespace PlayTests
         playerObject.transform.position = new Vector3(0, 1.25f, 0);
 
         Player player = playerObject.AddComponent<Player>();
-        var testPlayerInput = new TestPlayerInput();
+        var testPlayerInput = Substitute.For<IPlayerInput>();
         player.PlayerInput = testPlayerInput;
 
-        testPlayerInput.Vertical = 1f;
+        testPlayerInput.Vertical.Returns(1f);
 
         float startingZPosition = player.transform.position.z;
 
@@ -34,14 +35,5 @@ namespace PlayTests
         Assert.Greater(endingZPosition, startingZPosition);
       }
     }
-  }
-}
-
-namespace PlayTests.a_player
-{
-  public class TestPlayerInput : IPlayerInput
-  {
-    public float Vertical { get; set; }
-    public float Horizontal { get; set; }
   }
 }
