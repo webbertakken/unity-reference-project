@@ -1,0 +1,51 @@
+root=true
+# This file is the top-most EditorConfig file
+
+# All Files
+[*]
+charset=utf-8
+indent_style=space
+indent_size=2
+insert_final_newline=true
+trim_trailing_whitespace=true
+end_of_line=lf
+
+# ReSharper properties
+resharper_csharp_blank_lines_around_field=0
+resharper_csharp_blank_lines_inside_region=0
+resharper_csharp_stick_comment=false
+resharper_csharp_wrap_after_declaration_lpar=true
+resharper_csharp_wrap_after_invocation_lpar=true
+resharper_csharp_wrap_arguments_style=chop_if_long
+resharper_csharp_wrap_before_declaration_rpar=true
+resharper_csharp_wrap_before_invocation_rpar=true
+resharper_csharp_wrap_parameters_style=chop_if_long
+resharper_indent_preprocessor_if=usual_indent
+resharper_indent_preprocessor_other=usual_indent
+resharper_keep_existing_attribute_arrangement=true
+resharper_keep_existing_declaration_parens_arrangement=false
+resharper_keep_existing_expr_member_arrangement=false
+resharper_keep_existing_invocation_parens_arrangement=false
+resharper_keep_existing_linebreaks=false
+resharper_keep_existing_switch_expression_arrangement=false
+resharper_nested_ternary_style=expanded
+resharper_place_accessorholder_attribute_on_same_line=false
+resharper_place_field_attribute_on_same_line=false
+resharper_trailing_comma_in_multiline_lists=true
+resharper_wrap_chained_method_calls=chop_if_long
+resharper_wrap_verbatim_interpolated_strings=wrap_if_long
+
+# Microsoft .NET properties
+csharp_indent_braces=false
+csharp_new_line_before_catch=false
+csharp_new_line_before_finally=false
+csharp_new_line_before_members_in_object_initializers=true
+csharp_new_line_before_open_brace=types
+
+# Markdown Files
+[*.md]
+trim_trailing_whitespace=false
+
+# Batch Files
+[*.{cmd, bat}]
+end_of_line=crlf
