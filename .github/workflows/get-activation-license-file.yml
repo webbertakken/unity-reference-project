@@ -1,4 +1,6 @@
-﻿on:
+﻿name: Request activation file 🔑
+
+on:
   workflow_dispatch: {}
 
 jobs:
