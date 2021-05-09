@@ -7,15 +7,14 @@ on:
 
 jobs:
   tests:
-    name: ${{ matrix.suite }} ✨
+    name: ${{ matrix.testMode }} ✨
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        includes:
-          - suite: Units
-            testMode: editmode
-          - suite: PlayMode
-            testMode: playmode
+        testMode:
+          - EditMode
+          - PlayMode
     steps:
       - uses: actions/checkout@v2
         with:
@@ -26,7 +25,7 @@ jobs:
           key: Library-Test
           restore-keys: |
             Library-
-      - uses: game-ci/unity-test-runner@v2
+      - uses: game-ci/unity-test-runner@9c972142b057fd814a660ebab6701cb63767c215
         id: testRunner
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
