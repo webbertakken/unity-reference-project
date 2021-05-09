@@ -7,16 +7,14 @@ on:
 
 jobs:
   tests:
-    name: ${{ matrix.suite }} ${{ matrix.icon }}
+    name: ${{ matrix.suite }} ✨
     runs-on: ubuntu-latest
     strategy:
       matrix:
         includes:
           - suite: Units
-            icon: "✨"
             testMode: editmode
           - suite: PlayMode
-            icon: "▶"
             testMode: playmode
     steps:
       - uses: actions/checkout@v2
