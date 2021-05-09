@@ -19,7 +19,7 @@ ExportedObj/
 .consulo/
 *.csproj
 *.unityproj
-!Assembly-CSharp.csproj
+#!Assembly-CSharp.csproj
 *.suo
 *.tmp
 *.user
