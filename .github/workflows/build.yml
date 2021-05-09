@@ -27,7 +27,6 @@ jobs:
           restore-keys: |
             Library-Build-
             Library-
-      - run: touch test.artifact.file
       - uses: game-ci/unity-builder@38695bb26e1c15f43419ed9ab30c4bb7f92db311
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
