@@ -4,6 +4,7 @@
 /[Bb]uild/
 /[Bb]uilds/
 /[Ll]ogs/
+/[Uu]ser[Ss]ettings/
 /Assets/AssetStoreTools*
 /Assets/StreamingAssets*
 /Assets/EntityCache*
