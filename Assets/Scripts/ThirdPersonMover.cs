@@ -14,7 +14,8 @@ public class ThirdPersonMover : MonoBehaviour
   Rigidbody _rigidbody;
 
   Animator _animator;
-  static readonly int Speed = Animator.StringToHash("Speed");
+  static readonly int VerticalSpeed = Animator.StringToHash("VerticalSpeed");
+  static readonly int HorizontalSpeed = Animator.StringToHash("HorizontalSpeed");
 
   void Awake() {
     _rigidbody = GetComponent<Rigidbody>();
@@ -42,6 +43,7 @@ public class ThirdPersonMover : MonoBehaviour
     var offset = transform.rotation * velocity;
 
     _rigidbody.MovePosition(transform.position + offset);
-    _animator.SetFloat(Speed, vertical, 0.1f, Time.fixedDeltaTime);
+    _animator.SetFloat(VerticalSpeed, vertical, 0.1f, Time.fixedDeltaTime);
+    _animator.SetFloat(HorizontalSpeed, horizontal, 0.1f, Time.fixedDeltaTime);
   }
 }
