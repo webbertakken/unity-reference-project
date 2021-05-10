@@ -26,6 +26,7 @@ public class ThirdPersonMover : MonoBehaviour
     float vertical = Input.GetAxis("Vertical");
 
     var velocity = new Vector3(horizontal, 0, vertical);
+    velocity.Normalize();
     velocity *= _moveSpeed * Time.fixedDeltaTime;
 
     var offset = transform.rotation * velocity;
