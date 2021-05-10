@@ -32,12 +32,11 @@ public class ThirdPersonMover : MonoBehaviour
     float vertical = Input.GetAxis("Vertical");
 
     bool sprinting = Input.GetKey(KeyCode.LeftShift);
-    if (sprinting) {
+    if (sprinting && vertical > 0f) {
       vertical *= 2f;
     }
 
     var velocity = new Vector3(horizontal, 0, vertical);
-    velocity.Normalize();
     velocity *= _moveSpeed * Time.fixedDeltaTime;
 
     var offset = transform.rotation * velocity;
