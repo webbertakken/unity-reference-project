@@ -491,6 +491,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d067d9cdfd029884592e2a397c269132, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 8247797b64ea331458c38fe4eac5472b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 320f17668a80932469a68de8a3ee0247, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 8247797b64ea331458c38fe4eac5472b, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6116877125733485042, guid: 8247797b64ea331458c38fe4eac5472b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -555,9 +563,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.3
-  m_Height: 1.8
+  m_Height: 1.9
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.95, z: 0}
 --- !u!54 &870023672
 Rigidbody:
   m_ObjectHideFlags: 0
