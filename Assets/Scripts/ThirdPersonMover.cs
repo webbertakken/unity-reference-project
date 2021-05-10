@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
 public class ThirdPersonMover : MonoBehaviour
 {
   [SerializeField]
@@ -12,8 +13,12 @@ public class ThirdPersonMover : MonoBehaviour
   float _moveSpeed = 5f;
   Rigidbody _rigidbody;
 
+  Animator _animator;
+  static readonly int Speed = Animator.StringToHash("Speed");
+
   void Awake() {
     _rigidbody = GetComponent<Rigidbody>();
+    _animator = GetComponent<Animator>();
   }
 
   void Update() {
@@ -25,6 +30,11 @@ public class ThirdPersonMover : MonoBehaviour
     float horizontal = Input.GetAxis("Horizontal");
     float vertical = Input.GetAxis("Vertical");
 
+    bool sprinting = Input.GetKey(KeyCode.LeftShift);
+    if (sprinting) {
+      vertical *= 2f;
+    }
+
     var velocity = new Vector3(horizontal, 0, vertical);
     velocity.Normalize();
     velocity *= _moveSpeed * Time.fixedDeltaTime;
@@ -32,5 +42,6 @@ public class ThirdPersonMover : MonoBehaviour
     var offset = transform.rotation * velocity;
 
     _rigidbody.MovePosition(transform.position + offset);
+    _animator.SetFloat(Speed, vertical, 0.1f, Time.fixedDeltaTime);
   }
 }
