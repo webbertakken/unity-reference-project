@@ -19,16 +19,43 @@ jobs:
           - EditMode
           - PlayMode
     steps:
-      - uses: actions/checkout@v2
+
+      # This destroys 2GB free quota within a day
+      #      - uses: actions/checkout@v2
+      #        with:
+      #          lfs: true
+
+      # Workaround: https://github.com/actions/checkout/issues/165#issuecomment-657673315
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
+      - name: Restore LFS cache
+        uses: actions/cache@v2
+        id: lfs-cache
         with:
-          lfs: true
-      - uses: actions/cache@v2
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+
+      - name: Restore Library cache
+        uses: actions/cache@v2
+        id: lib-cache
         with:
           path: Library
           key: Library-Test
           restore-keys: |
             Library-
-      - uses: game-ci/unity-test-runner@v2.0-alpha-5
+
+      - name: Test run
+        uses: game-ci/unity-test-runner@v2.0-alpha-5
         id: testRunner
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -36,7 +63,9 @@ jobs:
           testMode: ${{ matrix.testMode }}
           checkName: ${{ matrix.testMode }} test results
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/upload-artifact@v2
+
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v2
         with:
           name: Test results (${{ matrix.testMode }})
           path: ${{ steps.testRunner.outputs.artifactsPath }}
@@ -55,22 +84,50 @@ jobs:
           - StandaloneWindows64
           - StandaloneLinux64
     steps:
-      - uses: actions/checkout@v2
+      # This destroys 2GB free quota within a day
+      #      - uses: actions/checkout@v2
+      #        with:
+      #          lfs: true
+
+      # Workaround: https://github.com/actions/checkout/issues/165#issuecomment-657673315
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
+      - name: Restore LFS cache
+        uses: actions/cache@v2
+        id: lfs-cache
         with:
-          lfs: true
-      - uses: actions/cache@v2
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+
+      - name: Restore Library cache
+        uses: actions/cache@v2
+        id: lib-cache
         with:
           path: Library
           key: Library-Build-${{ matrix.targetPlatform }}
           restore-keys: |
             Library-Build-
             Library-
-      - uses: game-ci/unity-builder@38695bb26e1c15f43419ed9ab30c4bb7f92db311
+
+      - name: Build project
+        uses: game-ci/unity-builder@38695bb26e1c15f43419ed9ab30c4bb7f92db311
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
-      - uses: actions/upload-artifact@v2
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
         with:
           name: Build (${{ matrix.targetPlatform }})
           path: build/${{ matrix.targetPlatform }}
