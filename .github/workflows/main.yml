@@ -40,7 +40,10 @@ jobs:
           key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
 
       - name: Git LFS Pull
-        run: git lfs pull
+        run: |
+          git lfs pull
+          git status
+          git status --porcelain
 
       - name: Restore Library cache
         uses: actions/cache@v2
