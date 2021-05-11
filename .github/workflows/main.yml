@@ -119,6 +119,8 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
+          # Remove after workaround is no longer needed
+          allowDirtyBuild: true
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
