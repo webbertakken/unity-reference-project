@@ -42,8 +42,7 @@ jobs:
       - name: Git LFS Pull
         run: |
           git lfs pull
-          git status
-          git status --porcelain
+          git reset --hard
 
       - name: Restore Library cache
         uses: actions/cache@v2
@@ -122,8 +121,6 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
-          # Remove after workaround is no longer needed
-          allowDirtyBuild: true
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
