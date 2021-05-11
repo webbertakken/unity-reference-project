@@ -42,7 +42,7 @@ jobs:
       - name: Git LFS Pull
         run: |
           git lfs pull
-          git reset --hard
+          rm .lfs-assets-id
 
       - name: Restore Library cache
         uses: actions/cache@v2
@@ -103,7 +103,9 @@ jobs:
           key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
 
       - name: Git LFS Pull
-        run: git lfs pull
+        run: |
+          git lfs pull
+          rm .lfs-assets-id
 
       - name: Restore Library cache
         uses: actions/cache@v2
