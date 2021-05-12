@@ -12,6 +12,8 @@ namespace UI
     [SerializeField] Button[] _choiceButtons;
 
     Story _story;
+    [SerializeField] Animator _animator;
+    static readonly int Open = Animator.StringToHash("Open");
 
     void Awake() { }
 
@@ -26,6 +28,7 @@ namespace UI
 
       while (_story.canContinue) {
         storyTestBuilder.AppendLine(_story.Continue());
+        HandleTags();
       }
 
       _storyText.SetText(storyTestBuilder);
@@ -48,6 +51,20 @@ namespace UI
           }
         );
       }
+    }
+
+    void HandleTags() {
+      foreach (var tag in _story.currentTags) {
+        Debug.Log(tag);
+
+        if (tag == "OpenDoor") {
+          OpenDoor();
+        }
+      }
+    }
+
+    void OpenDoor() {
+      _animator.SetTrigger(Open);
     }
   }
 }
