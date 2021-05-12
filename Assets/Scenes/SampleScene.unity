@@ -923,7 +923,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 40}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 464.7188, y: 80}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &586678239
@@ -3138,8 +3138,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 100, y: -20}
-  m_SizeDelta: {x: -200, y: 160}
+  m_AnchoredPosition: {x: 90, y: -40}
+  m_SizeDelta: {x: -220, y: 140}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1023744470
 MonoBehaviour:
@@ -3161,8 +3161,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hello, I'm a dialog giving NPC. I can show you around. Would you like to
-    chat with me?
+  m_text: 'I looked at Monsieur Fogg
+
+    
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3f270a7a7e969ab41bbe7650a7465d04, type: 2}
   m_sharedMaterial: {fileID: 4587181065718775091, guid: 3f270a7a7e969ab41bbe7650a7465d04, type: 2}
@@ -3197,7 +3200,7 @@ MonoBehaviour:
   m_fontSizeMax: 32
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -7366,6 +7369,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1529508923}
+  - component: {fileID: 1529508924}
   - component: {fileID: 1529508922}
   - component: {fileID: 1529508921}
   - component: {fileID: 1529508920}
@@ -7457,6 +7461,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1529508924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529508919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b1eee221a7df254198c671371ae0430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dialog: {fileID: 4900000, guid: 6cf48bb6d89824cc69e35b43f9a1aca6, type: 3}
+  _storyText: {fileID: 1023744470}
+  _choiceButtons:
+  - {fileID: 974542650}
+  - {fileID: 897354397}
+  - {fileID: 1146719746}
+  - {fileID: 1342499721}
 --- !u!1 &1597271308
 GameObject:
   m_ObjectHideFlags: 0
