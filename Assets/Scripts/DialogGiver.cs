@@ -10,7 +10,7 @@ public class DialogGiver : MonoBehaviour
   [SerializeField] TextAsset _dialog;
 
   void OnTriggerEnter(Collider other) {
-    var player = other.GetComponent<ThirdPersonMover>()
+    var player = other.GetComponent<ThirdPersonMover>();
     if (player != null) {
       transform.LookAt(player.transform);
       FindObjectOfType<DialogController>().StartDialog(_dialog);
