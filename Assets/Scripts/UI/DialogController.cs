@@ -1,4 +1,5 @@
 using System.Text;
+using GameEvents;
 using Ink.Runtime;
 using TMPro;
 using UnityEngine;
@@ -55,16 +56,17 @@ namespace UI
 
     void HandleTags() {
       foreach (var tag in _story.currentTags) {
-        Debug.Log(tag);
 
-        if (tag == "OpenDoor") {
-          OpenDoor();
+        // Detect and process event tags
+        string eventIdentifier = "event.";
+        if (tag.StartsWith(eventIdentifier)) {
+          string eventName = tag.Remove(0, eventIdentifier.Length);
+          GameEvent.RaiseEvent(eventName);
+          continue;
         }
-      }
-    }
 
-    void OpenDoor() {
-      _animator.SetTrigger(Open);
+        Debug.LogWarning($"Unhandled tag: {tag}");
+      }
     }
   }
 }
