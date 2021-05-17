@@ -2676,7 +2676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d61952ba7db38cf48b4636cc55baecec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialog: {fileID: 4900000, guid: 6cf48bb6d89824cc69e35b43f9a1aca6, type: 3}
+  _dialog: {fileID: 4900000, guid: 03977ecde85dff74b904a167a6d1de43, type: 3}
 --- !u!1 &897354395
 GameObject:
   m_ObjectHideFlags: 0
@@ -7873,13 +7873,14 @@ GameObject:
   - component: {fileID: 1529508922}
   - component: {fileID: 1529508921}
   - component: {fileID: 1529508920}
+  - component: {fileID: 1529508925}
   m_Layer: 5
   m_Name: '[CANVAS] Dialog'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1529508920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7980,6 +7981,18 @@ MonoBehaviour:
   - {fileID: 1146719746}
   - {fileID: 1342499721}
   _animator: {fileID: 1455795933}
+--- !u!225 &1529508925
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529508919}
+  m_Enabled: 1
+  m_Alpha: 0.5
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!43 &1660981541
 Mesh:
   m_ObjectHideFlags: 0

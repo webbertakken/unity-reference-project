@@ -58,7 +58,7 @@ namespace UI
       foreach (var tag in _story.currentTags) {
 
         // Detect and process event tags
-        string eventIdentifier = "event.";
+        string eventIdentifier = "Event.";
         if (tag.StartsWith(eventIdentifier)) {
           string eventName = tag.Remove(0, eventIdentifier.Length);
           GameEvent.RaiseEvent(eventName);
