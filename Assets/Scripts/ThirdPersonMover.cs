@@ -16,6 +16,7 @@ public class ThirdPersonMover : MonoBehaviour
   Animator _animator;
   static readonly int VerticalSpeed = Animator.StringToHash("VerticalSpeed");
   static readonly int HorizontalSpeed = Animator.StringToHash("HorizontalSpeed");
+  float _mouseMovement;
 
   void Awake() {
     _rigidbody = GetComponent<Rigidbody>();
@@ -23,11 +24,15 @@ public class ThirdPersonMover : MonoBehaviour
   }
 
   void Update() {
-    var mouseMovement = Input.GetAxis("Mouse X");
-    transform.Rotate(0, mouseMovement * Time.deltaTime * _turnSpeed, 0);
+    // Stays in Update because of deltaTime
+    _mouseMovement += Input.GetAxis("Mouse X");
   }
 
   void FixedUpdate() {
+    // In FixedUpdate for smooth camera
+    transform.Rotate(0, _mouseMovement * Time.deltaTime * _turnSpeed, 0);
+    _mouseMovement = 0f;
+
     float horizontal = Input.GetAxis("Horizontal");
     float vertical = Input.GetAxis("Vertical");
 
