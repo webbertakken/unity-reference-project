@@ -74,4 +74,4 @@ crashlytics-build.properties
 /.idea/
 /.backup/
 /[Aa]ssets/[Ss]amples*
-
+/[Dd]ist/
