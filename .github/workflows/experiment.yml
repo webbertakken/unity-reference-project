@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: ${{ matrix.targetPlatform }} 🚀
+    name: ${{ matrix.unityVersion }} ${{ matrix.targetPlatform }} 🚀
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -50,7 +50,7 @@ jobs:
             Library-
 
       - name: Build project
-        uses: game-ci/unity-builder@38695bb26e1c15f43419ed9ab30c4bb7f92db311
+        uses: game-ci/unity-builder@45bcd62cf9aab1075e4f77b703ea24f37ff97a7a
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
