@@ -3,7 +3,6 @@
 on:
   workflow_dispatch: {}
   pull_request: {}
-  push: { branches: [test-nographics] }
 
 jobs:
   build:
@@ -50,7 +49,7 @@ jobs:
             Library-
 
       - name: Build project
-        uses: game-ci/unity-builder@45bcd62cf9aab1075e4f77b703ea24f37ff97a7a
+        uses: game-ci/unity-builder@68b2769e0783cd2236f005718660815ab8624d7c
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
