@@ -56,7 +56,7 @@ jobs:
           unityVersion: ${{ matrix.unityVersion }}
 
       - name: Upload build artifacts
-        if: ${{ matrix.unityVersion == "2021.1.6f1" }}
+        if: ${{ matrix.unityVersion == '2021.1.6f1' }}
         uses: actions/upload-artifact@v2
         with:
           name: Build (${{ matrix.targetPlatform }})
