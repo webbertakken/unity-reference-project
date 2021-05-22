@@ -13,7 +13,7 @@ public class DialogGiver : MonoBehaviour
     var player = other.GetComponent<ThirdPersonMover>();
     if (player != null) {
       transform.LookAt(player.transform);
-      FindObjectOfType<DialogController>().StartDialog(_dialog);
+      FindObjectOfType<DialogController>().OpenDialog().StartDialog(_dialog);
     }
   }
 }

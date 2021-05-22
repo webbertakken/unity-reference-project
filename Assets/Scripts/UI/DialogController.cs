@@ -13,10 +13,12 @@ namespace UI
     [SerializeField] Button[] _choiceButtons;
 
     Story _story;
-    [SerializeField] Animator _animator;
-    static readonly int Open = Animator.StringToHash("Open");
+    CanvasGroup _canvasGroup;
 
-    void Awake() { }
+    void Awake() {
+      _canvasGroup = GetComponent<CanvasGroup>();
+      CloseDialog();
+    }
 
     [ContextMenu("Start Dialog")]
     public void StartDialog(TextAsset dialog) {
@@ -67,6 +69,20 @@ namespace UI
 
         Debug.LogWarning($"Unhandled tag: {tag}");
       }
+    }
+
+    public DialogController OpenDialog() {
+      _canvasGroup.alpha = .7f;
+      _canvasGroup.interactable = true;
+      _canvasGroup.blocksRaycasts = true;
+
+      return this;
+    }
+
+    public void CloseDialog() {
+      _canvasGroup.alpha = 0f;
+      _canvasGroup.interactable = false;
+      _canvasGroup.blocksRaycasts = false;
     }
   }
 }
