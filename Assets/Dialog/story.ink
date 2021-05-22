@@ -7,10 +7,10 @@ I've been waiting for you. Glad you're here!
     
     
 == instructions ==
-Go to the panel, it's in the back room. #Event.ShowSecondRoom
+You can open the door from the control panel. #Event.EndShowGreenDoor #Event.ShowControlPanel
     * Why can't you do that?
       I'm too wide..
       * * Okay, I'm on it!
-          Thanks! -> END
+          Thanks! #Event.EndShowControlPanel # -> END 
     
-- -> END
+- -> END 
