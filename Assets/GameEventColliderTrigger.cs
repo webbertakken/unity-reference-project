@@ -2,16 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using GameEvents;
 using UnityEngine;
+using UnityEngine.Serialization;
+
 [RequireComponent(typeof(Collider))]
 public class GameEventColliderTrigger: MonoBehaviour
 {
+  [FormerlySerializedAs("_gameEventsToTrigger")]
   [Header("Target triggers")]
-  [SerializeField] GameEvent _gameEventsToTrigger;
+  [SerializeField] GameEvent _gameEventToTrigger;
+  [SerializeField] float _secondsDelay = 0f;
 
   void OnTriggerEnter(Collider other) {
     var player = other.GetComponent<ThirdPersonMover>();
     if (player != null) {
-      _gameEventsToTrigger.Invoke();
+      Invoke(nameof(Trigger), _secondsDelay);
     }
+  }
+
+  void Trigger() {
+    _gameEventToTrigger.Invoke();
   }
 }
