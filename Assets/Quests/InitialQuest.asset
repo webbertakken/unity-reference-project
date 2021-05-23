@@ -16,4 +16,6 @@ MonoBehaviour:
   _description: Help out Henry
   _internalNote: 
   Steps:
-  - Objectives: []
+  - _instructions: 
+    Objectives:
+    - _type: 0
