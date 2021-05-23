@@ -1,27 +1,25 @@
+using System.Linq;
 using System.Text;
 using GameEvents;
 using Ink.Runtime;
+using NSubstitute.Core;
+using Quests;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
 {
-  public class DialogController : MonoBehaviour
+  public class DialogController : ToggleablePanel
   {
     [SerializeField] TMP_Text _storyText;
     [SerializeField] Button[] _choiceButtons;
 
     Story _story;
-    CanvasGroup _canvasGroup;
-
-    void Awake() {
-      _canvasGroup = GetComponent<CanvasGroup>();
-      CloseDialog();
-    }
 
     [ContextMenu("Start Dialog")]
     public void StartDialog(TextAsset dialog) {
+      Show();
       _story = new Story(dialog.text);
       RefreshView();
     }
@@ -58,31 +56,23 @@ namespace UI
 
     void HandleTags() {
       foreach (var tag in _story.currentTags) {
-
         // Detect and process event tags
-        string eventIdentifier = "Event.";
-        if (tag.StartsWith(eventIdentifier)) {
-          string eventName = tag.Remove(0, eventIdentifier.Length);
-          GameEvent.RaiseEvent(eventName);
-          continue;
+        string[] tagParts = tag.Split('.');
+        string identifier = tagParts[0];
+        string tagContent = tagParts.Skip(1).ToArray().Join(".");
+
+        switch (identifier) {
+          case "Event":
+            GameEvent.RaiseEvent(tagContent);
+            continue;
+          case "Quest":
+            QuestManager.Instance.AddQuestByName(tagContent);
+            continue;
+          default:
+            Debug.LogWarning($"Unhandled tag: {tag}");
+            break;
         }
-
-        Debug.LogWarning($"Unhandled tag: {tag}");
       }
-    }
-
-    public DialogController OpenDialog() {
-      _canvasGroup.alpha = .7f;
-      _canvasGroup.interactable = true;
-      _canvasGroup.blocksRaycasts = true;
-
-      return this;
-    }
-
-    public void CloseDialog() {
-      _canvasGroup.alpha = 0f;
-      _canvasGroup.interactable = false;
-      _canvasGroup.blocksRaycasts = false;
     }
   }
 }
