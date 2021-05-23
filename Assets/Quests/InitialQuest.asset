@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020d5356c48950b40a7eb6b24f3e405e, type: 3}
   m_Name: InitialQuest
   m_EditorClassIdentifier: 
-  _name: Push the button
+  _displayName: Inspect the control panel
   _description: Help out Henry
+  _sprite: {fileID: 21300000, guid: c40c7257fc81d9241a2d17c45c5c2042, type: 3}
   _internalNote: 
   Steps:
-  - _instructions: 
+  - _instructions: Look at the panel
     Objectives:
     - _type: 0
