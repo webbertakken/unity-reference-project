@@ -2,7 +2,6 @@
 using NSubstitute;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
@@ -39,7 +38,7 @@ namespace PlayTests
     public class with_positive_vertical_input
     {
       [UnityTest]
-      public IEnumerator move_forward() {
+      public IEnumerator moves_forward() {
         yield return Helpers.LoadMovementTestsScene();
 
         var player = Helpers.GetPlayer();
@@ -47,11 +46,30 @@ namespace PlayTests
 
         float startingZPosition = player.transform.position.z;
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
 
         float endingZPosition = player.transform.position.z;
 
         Assert.Greater(endingZPosition, startingZPosition);
+      }
+    }
+
+    public class with_negative_vertical_input
+    {
+      [UnityTest]
+      public IEnumerator moves_backward() {
+        yield return Helpers.LoadMovementTestsScene();
+
+        var player = Helpers.GetPlayer();
+        player.PlayerInput.Vertical.Returns(-1f);
+
+        float startingZPosition = player.transform.position.z;
+
+        yield return new WaitForSeconds(1f);
+
+        float endingZPosition = player.transform.position.z;
+
+        Assert.Less(endingZPosition, startingZPosition);
       }
     }
 
@@ -65,10 +83,27 @@ namespace PlayTests
         player.PlayerInput.MouseX.Returns(-1f);
 
         var originalRotation = player.transform.rotation;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
 
         float turnAmount = Helpers.CalculateTurn(originalRotation, player.transform.rotation);
         Assert.Less(turnAmount, 0);
+      }
+    }
+
+    public class with_positive_mouse_x
+    {
+      [UnityTest]
+      public IEnumerator turns_right() {
+        yield return Helpers.LoadMovementTestsScene();
+
+        var player = Helpers.GetPlayer();
+        player.PlayerInput.MouseX.Returns(1f);
+
+        var originalRotation = player.transform.rotation;
+        yield return new WaitForSeconds(0.1f);
+
+        float turnAmount = Helpers.CalculateTurn(originalRotation, player.transform.rotation);
+        Assert.Greater(turnAmount, 0);
       }
     }
   }
