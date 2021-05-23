@@ -1069,6 +1069,50 @@ Transform:
   m_Father: {fileID: 870023674}
   m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &454547049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 454547051}
+  - component: {fileID: 454547050}
+  m_Layer: 0
+  m_Name: '[QUEST MANAGER]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &454547050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454547049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d1b4b3772b27c34188736f30119aac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questPanel: {fileID: 1126774999}
+--- !u!4 &454547051
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454547049}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1322.2437, y: 915.3857, z: -652.80774}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &505515634
 GameObject:
   m_ObjectHideFlags: 0
@@ -5884,6 +5928,7 @@ GameObject:
   m_Component:
   - component: {fileID: 871710178}
   - component: {fileID: 871710180}
+  - component: {fileID: 871710181}
   - component: {fileID: 871710179}
   m_Layer: 0
   m_Name: NPC Drone
@@ -5934,6 +5979,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialog: {fileID: 4900000, guid: 03977ecde85dff74b904a167a6d1de43, type: 3}
+--- !u!114 &871710181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871710177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa768ed3a4eb4ad7b87e887357258059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questToGive: {fileID: 11400000, guid: f71fcde75bae5ee4ea31955451233ef0, type: 2}
 --- !u!1 &897354395
 GameObject:
   m_ObjectHideFlags: 0
