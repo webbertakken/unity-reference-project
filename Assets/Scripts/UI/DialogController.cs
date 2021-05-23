@@ -7,21 +7,16 @@ using UnityEngine.UI;
 
 namespace UI
 {
-  public class DialogController : MonoBehaviour
+  public class DialogController : ToggleablePanel
   {
     [SerializeField] TMP_Text _storyText;
     [SerializeField] Button[] _choiceButtons;
 
     Story _story;
-    CanvasGroup _canvasGroup;
-
-    void Awake() {
-      _canvasGroup = GetComponent<CanvasGroup>();
-      CloseDialog();
-    }
 
     [ContextMenu("Start Dialog")]
     public void StartDialog(TextAsset dialog) {
+      Show();
       _story = new Story(dialog.text);
       RefreshView();
     }
@@ -71,18 +66,6 @@ namespace UI
       }
     }
 
-    public DialogController OpenDialog() {
-      _canvasGroup.alpha = .7f;
-      _canvasGroup.interactable = true;
-      _canvasGroup.blocksRaycasts = true;
 
-      return this;
-    }
-
-    public void CloseDialog() {
-      _canvasGroup.alpha = 0f;
-      _canvasGroup.interactable = false;
-      _canvasGroup.blocksRaycasts = false;
-    }
   }
 }
