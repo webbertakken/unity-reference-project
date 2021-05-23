@@ -2,8 +2,6 @@ using System.Linq;
 using System.Text;
 using GameEvents;
 using Ink.Runtime;
-using NSubstitute.Core;
-using Quests;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,6 +20,16 @@ namespace UI
       Show();
       _story = new Story(dialog.text);
       RefreshView();
+    }
+
+    public new void Show() {
+      base.Show();
+      ThirdPersonMover.Instance.ToggleEnabled(false);
+    }
+
+    public new void Hide() {
+      base.Hide();
+      ThirdPersonMover.Instance.ToggleEnabled(true);
     }
 
     void RefreshView() {
@@ -59,7 +67,7 @@ namespace UI
         // Detect and process event tags
         string[] tagParts = tag.Split('.');
         string identifier = tagParts[0];
-        string tagContent = tagParts.Skip(1).ToArray().Join(".");
+        string tagContent = string.Join(".", tagParts.Skip(1));
 
         switch (identifier) {
           case "Event":
