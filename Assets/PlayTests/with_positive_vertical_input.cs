@@ -3,6 +3,7 @@ using NSubstitute;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
 namespace PlayTests
@@ -11,21 +12,16 @@ namespace PlayTests
   {
     public static class Helpers
     {
-      public static GameObject CreateFloor() {
-        var floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        floor.transform.localScale = new Vector3(50, 0.1f, 50);
-        floor.transform.position = Vector3.down;
-
-        return floor;
+      public static IEnumerator LoadMovementTestsScene() {
+        var operation = SceneManager.LoadSceneAsync("MovementTests");
+        while (!operation.isDone) {
+          yield return null;
+        }
       }
 
-      public static Player CreatePlayer() {
-        var playerObject = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-        playerObject.AddComponent<CharacterController>();
-        playerObject.AddComponent<NavMeshAgent>();
-        playerObject.transform.position = new Vector3(0, 1.25f, 0);
+      public static Player GetPlayer() {
+        Player player = GameObject.FindObjectOfType<Player>();
 
-        Player player = playerObject.AddComponent<Player>();
         var testPlayerInput = Substitute.For<IPlayerInput>();
         player.PlayerInput = testPlayerInput;
 
@@ -44,9 +40,9 @@ namespace PlayTests
     {
       [UnityTest]
       public IEnumerator move_forward() {
-        Helpers.CreateFloor();
+        yield return Helpers.LoadMovementTestsScene();
 
-        var player = Helpers.CreatePlayer();
+        var player = Helpers.GetPlayer();
         player.PlayerInput.Vertical.Returns(1f);
 
         float startingZPosition = player.transform.position.z;
@@ -63,7 +59,9 @@ namespace PlayTests
     {
       [UnityTest]
       public IEnumerator turns_left() {
-        var player = Helpers.CreatePlayer();
+        yield return Helpers.LoadMovementTestsScene();
+
+        var player = Helpers.GetPlayer();
         player.PlayerInput.MouseX.Returns(-1f);
 
         var originalRotation = player.transform.rotation;
