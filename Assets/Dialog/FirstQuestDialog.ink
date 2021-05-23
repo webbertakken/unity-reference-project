@@ -11,6 +11,6 @@ You can open the door from the control panel. #Event.EndShowGreenDoor #Event.Sho
     * Why can't you do that?
       I'm too wide..
       * * Okay, I'm on it!
-          Thanks! #Event.EndShowControlPanel # -> END 
+          Thanks! #Event.EndShowControlPanel #Quest.InspectTheControlPanel # -> END 
     
 - -> END 

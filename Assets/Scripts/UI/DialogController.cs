@@ -1,6 +1,9 @@
+using System.Linq;
 using System.Text;
 using GameEvents;
 using Ink.Runtime;
+using NSubstitute.Core;
+using Quests;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -53,19 +56,23 @@ namespace UI
 
     void HandleTags() {
       foreach (var tag in _story.currentTags) {
-
         // Detect and process event tags
-        string eventIdentifier = "Event.";
-        if (tag.StartsWith(eventIdentifier)) {
-          string eventName = tag.Remove(0, eventIdentifier.Length);
-          GameEvent.RaiseEvent(eventName);
-          continue;
-        }
+        string[] tagParts = tag.Split('.');
+        string identifier = tagParts[0];
+        string tagContent = tagParts.Skip(1).ToArray().Join(".");
 
-        Debug.LogWarning($"Unhandled tag: {tag}");
+        switch (identifier) {
+          case "Event":
+            GameEvent.RaiseEvent(tagContent);
+            continue;
+          case "Quest":
+            QuestManager.Instance.AddQuestByName(tagContent);
+            continue;
+          default:
+            Debug.LogWarning($"Unhandled tag: {tag}");
+            break;
+        }
       }
     }
-
-
   }
 }

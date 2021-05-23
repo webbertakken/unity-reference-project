@@ -745,9 +745,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_ShowDebugText: 0
   m_Loop: 0
-  m_ChildCameras:
-  - {fileID: 1288721701}
-  - {fileID: 166629510}
+  m_ChildCameras: []
   m_Instructions:
   - m_VirtualCamera: {fileID: 1288721701}
     m_Hold: 2
@@ -1233,6 +1231,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _questPanel: {fileID: 1126774999}
+  _allQuests:
+  - {fileID: 11400000, guid: f71fcde75bae5ee4ea31955451233ef0, type: 2}
 --- !u!4 &454547051
 Transform:
   m_ObjectHideFlags: 0
@@ -6196,7 +6196,6 @@ GameObject:
   m_Component:
   - component: {fileID: 871710178}
   - component: {fileID: 871710180}
-  - component: {fileID: 871710181}
   - component: {fileID: 871710179}
   m_Layer: 0
   m_Name: NPC Drone
@@ -6246,20 +6245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d61952ba7db38cf48b4636cc55baecec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialog: {fileID: 4900000, guid: 03977ecde85dff74b904a167a6d1de43, type: 3}
---- !u!114 &871710181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 871710177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa768ed3a4eb4ad7b87e887357258059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _questToGive: {fileID: 11400000, guid: f71fcde75bae5ee4ea31955451233ef0, type: 2}
+  _dialog: {fileID: 4900000, guid: 65d538f27ad20f94193ad3f48cd63184, type: 3}
 --- !u!1 &897354395
 GameObject:
   m_ObjectHideFlags: 0

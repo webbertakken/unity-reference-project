@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 020d5356c48950b40a7eb6b24f3e405e, type: 3}
-  m_Name: InitialQuest
+  m_Name: InspectTheControlPanel
   m_EditorClassIdentifier: 
   _displayName: Inspect the control panel
   _description: Help out Henry
