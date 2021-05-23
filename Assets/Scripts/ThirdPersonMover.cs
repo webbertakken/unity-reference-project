@@ -18,14 +18,23 @@ public class ThirdPersonMover : MonoBehaviour
   static readonly int HorizontalSpeed = Animator.StringToHash("HorizontalSpeed");
   float _mouseMovement;
 
+  bool _isEnabled = true;
+
+  public static ThirdPersonMover Instance;
+
+  public void ToggleEnabled(bool isEnabled) => _isEnabled = isEnabled;
+
   void Awake() {
+    Instance = this;
     _rigidbody = GetComponent<Rigidbody>();
     _animator = GetComponent<Animator>();
   }
 
   void Update() {
-    // Stays in Update because of deltaTime
-    _mouseMovement += Input.GetAxis("Mouse X");
+    if (_isEnabled) {
+      // Stays in Update because of deltaTime
+      _mouseMovement += Input.GetAxis("Mouse X");
+    }
   }
 
   void FixedUpdate() {
