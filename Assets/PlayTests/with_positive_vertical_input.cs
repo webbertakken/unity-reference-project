@@ -14,7 +14,7 @@ namespace PlayTests
       public static GameObject CreateFloor() {
         var floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
         floor.transform.localScale = new Vector3(50, 0.1f, 50);
-        floor.transform.position = Vector3.zero;
+        floor.transform.position = Vector3.down;
 
         return floor;
       }

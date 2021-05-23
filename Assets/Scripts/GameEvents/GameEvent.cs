@@ -32,9 +32,12 @@ namespace GameEvents
     }
 
     public static void RaiseEvent(string eventName) {
+      var count = 0;
       foreach (var listenedEvent in _listenedEvents.Where(listenedEvent => listenedEvent.name == eventName)) {
+        count++;
         listenedEvent.Invoke();
       }
+      Debug.Log($"{eventName} triggered. {count.ToString()} listeners.");
     }
   }
 }

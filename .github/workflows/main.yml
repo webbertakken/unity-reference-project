@@ -120,7 +120,7 @@ jobs:
             Library-
 
       - name: Build project
-        uses: game-ci/unity-builder@38695bb26e1c15f43419ed9ab30c4bb7f92db311
+        uses: game-ci/unity-builder@v2.0-alpha-10
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
