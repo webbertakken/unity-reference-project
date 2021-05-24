@@ -9,6 +9,9 @@
 # Ensure that text files that any contributor introduces to the repository have their line endings normalized
 * text=auto
 
+# Increase probability of success while merging files with specific extensions
+*.cs diff=csharp
+
 # Macro attribute: Files with Unities yaml format
 # linguist-generated means the file is ignored for the repository's language statistics and diffs are hidden by default.
 [attr]unity-yaml-file -text -merge=unityamlmerge linguist-generated
