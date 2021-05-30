@@ -17,6 +17,13 @@ MonoBehaviour:
   _sprite: {fileID: 21300000, guid: c40c7257fc81d9241a2d17c45c5c2042, type: 3}
   _internalNote: 
   Steps:
-  - _instructions: Look at the panel
+  - _instructions: Phase 1
     Objectives:
     - _type: 0
+      _gameFlag: {fileID: 11400000, guid: 3eda3ae56a2233546961784788fbba7f, type: 2}
+    - _type: 0
+      _gameFlag: {fileID: 11400000, guid: b9a690070a96d3b4aa9eee6448718cb7, type: 2}
+  - _instructions: Phase 2
+    Objectives:
+    - _type: 0
+      _gameFlag: {fileID: 11400000, guid: 0aa7e4c49cebb8846885253176dd6f40, type: 2}

@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Quests
 {
   [CreateAssetMenu(menuName = "Quest", order = 51)]
   public class Quest : ScriptableObject
   {
-    [FormerlySerializedAs("_name")]
+    public event Action Changed;
+
     [SerializeField] string _displayName;
     [SerializeField] string _description;
     [SerializeField] Sprite _sprite;
@@ -16,35 +16,40 @@ namespace Quests
     [Tooltip("Designer/programmer notes")]
     [SerializeField] string _internalNote;
 
+    int _currentStepIndex = 0;
+
     public List<Step> Steps;
 
-    public string Name => _displayName;
+    public string DisplayName => _displayName;
     public string Description => _description;
     public Sprite Sprite => _sprite;
-  }
 
-  [Serializable]
-  public class Step
-  {
-    [SerializeField] string _instructions;
-    public string Instructions => _instructions;
+    public Step CurrentStep => Steps[_currentStepIndex];
 
-    public List<Objective> Objectives;
-
-
-  }
-
-  [Serializable]
-  public class Objective
-  {
-    [SerializeField] ObjectiveType _type;
-    public enum ObjectiveType
-    {
-      Flag,
-      Item,
-      Kill,
+    void OnEnable() {
+      _currentStepIndex = 0;
+      foreach (var step in Steps) {
+        foreach (var objective in step.Objectives) {
+          if (objective.gameFlag != null) {
+            objective.gameFlag.Changed += OnObjectiveChanged;
+          }
+        }
+      }
     }
 
-    public override string ToString() => _type.ToString();
+    void OnObjectiveChanged() {
+      TryProgress();
+      Changed?.Invoke();
+    }
+
+    public void TryProgress() {
+      var currentStep = GetCurrentStep();
+      if (currentStep.HasAllObjectivesCompleted()) {
+        _currentStepIndex++;
+        Changed?.Invoke();
+      }
+    }
+
+    Step GetCurrentStep() => Steps[_currentStepIndex];
   }
 }

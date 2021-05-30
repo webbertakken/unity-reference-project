@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Flags;
 using Quests;
 using UI;
 using UnityEngine;
@@ -23,12 +24,19 @@ public class QuestManager : MonoBehaviour
   }
 
   public void AddQuestByName(string questName) {
-    var quest = _allQuests.FirstOrDefault(t => t.name == questName);
+    var quest = _allQuests.FirstOrDefault(q => q.name == questName);
 
     if (quest != null) {
       AddQuest(quest);
     } else {
       Debug.LogWarning($"Could not add quest by name {questName}");
+    }
+  }
+
+  [ContextMenu("Progress quests")]
+  public void ProgressQuests() {
+    foreach (var activeQuest in _activeQuests) {
+      activeQuest.TryProgress();
     }
   }
 }
