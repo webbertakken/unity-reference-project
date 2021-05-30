@@ -1,22 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
-using Flags;
+using System;
 using UnityEngine;
 
-public class GameFlagColliderTrigger : MonoBehaviour
+namespace Flags
 {
-  [Header("Target triggers")]
-  [SerializeField] GameFlag _gameFlagToSet;
-  [SerializeField] bool _setToValue = true;
+  public class GameFlagColliderTrigger : MonoBehaviour
+  {
+    [Header("Target triggers")]
+    [SerializeField] GameFlag _gameFlagToSet;
+    [SerializeField] bool _setToValue = true;
+    [SerializeField] float _secondsDelay = 0f;
 
-  void OnTriggerEnter(Collider other) {
-    var player = other.GetComponent<ThirdPersonMover>();
-    if (player != null) {
-      Invoke(nameof(Trigger), 0f);
+    void OnTriggerEnter(Collider other) {
+      var player = other.GetComponent<ThirdPersonMover>();
+      if (player != null) {
+        Invoke(nameof(Trigger), _secondsDelay);
+      }
     }
-  }
 
-  void Trigger() {
-    _gameFlagToSet.Value = _setToValue;
+    void Trigger() {
+      Debug.LogWarning("setting flag");
+      _gameFlagToSet.Set(_setToValue);
+    }
   }
 }

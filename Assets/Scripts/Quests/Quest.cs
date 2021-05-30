@@ -9,7 +9,7 @@ namespace Quests
   [CreateAssetMenu(menuName = "Quest", order = 51)]
   public class Quest : ScriptableObject
   {
-    public event Action Progressed;
+    public event Action Changed;
 
     [SerializeField] string _displayName;
     [SerializeField] string _description;
@@ -18,7 +18,7 @@ namespace Quests
     [Tooltip("Designer/programmer notes")]
     [SerializeField] string _internalNote;
 
-    int _currentStepIndex;
+    int _currentStepIndex = 0;
 
     public List<Step> Steps;
 
@@ -28,11 +28,27 @@ namespace Quests
 
     public Step CurrentStep => Steps[_currentStepIndex];
 
+    void OnEnable() {
+      _currentStepIndex = 0;
+      foreach (var step in Steps) {
+        foreach (var objective in step.Objectives) {
+          if (objective.GameFlag != null) {
+            objective.GameFlag.Changed += OnObjectiveChanged;
+          }
+        }
+      }
+    }
+
+    void OnObjectiveChanged() {
+      TryProgress();
+      Changed?.Invoke();
+    }
+
     public void TryProgress() {
       var currentStep = GetCurrentStep();
       if (currentStep.HasAllObjectivesCompleted()) {
         _currentStepIndex++;
-        Progressed?.Invoke();
+        Changed?.Invoke();
       }
     }
 
@@ -77,6 +93,8 @@ namespace Quests
         }
       }
     }
+
+    public GameFlag GameFlag => _gameFlag;
 
     public override string ToString() {
       switch (_type) {

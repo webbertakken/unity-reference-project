@@ -34,7 +34,8 @@ namespace UI
       if (_selectedStep != null) {
         builder.AppendLine(_selectedStep.Instructions);
         foreach (var objective in _selectedStep.Objectives) {
-          builder.AppendLine(objective.ToString());
+          string rgb = objective.IsCompleted ? "green" : "red";
+          builder.AppendLine($"<color={rgb}>{objective}</color>");
         }
       }
 
@@ -42,15 +43,16 @@ namespace UI
     }
 
     public void SelectQuest(Quest quest) {
-      if (_selectedQuest) {
-        _selectedQuest.Progressed -= DisplayStepInstructionsAndObjectives;
+      Debug.LogWarning($"Quest set to {quest.DisplayName}");
+      if (_selectedQuest != null) {
+        _selectedQuest.Changed -= DisplayStepInstructionsAndObjectives;
       }
 
       _selectedQuest = quest;
       Bind();
       Show();
 
-      _selectedQuest.Progressed += DisplayStepInstructionsAndObjectives;
+      _selectedQuest.Changed += DisplayStepInstructionsAndObjectives;
     }
   }
 }
