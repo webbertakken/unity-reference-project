@@ -12722,9 +12722,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_ShowDebugText: 0
   m_Loop: 0
-  m_ChildCameras:
-  - {fileID: 1288721701}
-  - {fileID: 166629510}
+  m_ChildCameras: []
   m_Instructions:
   - m_VirtualCamera: {fileID: 1288721701}
     m_Hold: 2
@@ -35729,7 +35727,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
