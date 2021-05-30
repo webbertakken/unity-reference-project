@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Flags;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Quests
 {
@@ -32,8 +30,8 @@ namespace Quests
       _currentStepIndex = 0;
       foreach (var step in Steps) {
         foreach (var objective in step.Objectives) {
-          if (objective.GameFlag != null) {
-            objective.GameFlag.Changed += OnObjectiveChanged;
+          if (objective.gameFlag != null) {
+            objective.gameFlag.Changed += OnObjectiveChanged;
           }
         }
       }
@@ -53,57 +51,5 @@ namespace Quests
     }
 
     Step GetCurrentStep() => Steps[_currentStepIndex];
-  }
-
-  [Serializable]
-  public class Step
-  {
-    [SerializeField] string _instructions;
-    public string Instructions => _instructions;
-
-    public List<Objective> Objectives;
-
-    public bool HasAllObjectivesCompleted() {
-      return Objectives.TrueForAll(objective => objective.IsCompleted);
-    }
-  }
-
-  [Serializable]
-  public class Objective
-  {
-    [SerializeField] ObjectiveType _type;
-    [SerializeField] GameFlag _gameFlag;
-
-    public enum ObjectiveType
-    {
-      Flag,
-      Item,
-      Kill,
-    }
-
-    public bool IsCompleted {
-      get {
-        switch (_type) {
-          case ObjectiveType.Flag:
-            return _gameFlag.Value;
-          default: {
-            Debug.LogWarning($"IsCompleted: Unhandled type {_type}");
-            return false;
-          }
-        }
-      }
-    }
-
-    public GameFlag GameFlag => _gameFlag;
-
-    public override string ToString() {
-      switch (_type) {
-        case ObjectiveType.Flag:
-          return _gameFlag.name;
-        default: {
-          return _type.ToString();
-        }
-      }
-    }
   }
 }

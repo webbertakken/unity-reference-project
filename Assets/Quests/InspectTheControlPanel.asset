@@ -20,7 +20,7 @@ MonoBehaviour:
   - _instructions: Phase 1
     Objectives:
     - _type: 0
-      _gameFlag: {fileID: 11400000, guid: b2490696cfce0af4dafa70fa503a8eb7, type: 2}
+      _gameFlag: {fileID: 11400000, guid: 3eda3ae56a2233546961784788fbba7f, type: 2}
     - _type: 0
       _gameFlag: {fileID: 11400000, guid: b9a690070a96d3b4aa9eee6448718cb7, type: 2}
   - _instructions: Phase 2
