@@ -7,7 +7,6 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(Collider))]
 public class GameEventColliderTrigger: MonoBehaviour
 {
-  [FormerlySerializedAs("_gameEventsToTrigger")]
   [Header("Target triggers")]
   [SerializeField] GameEvent _gameEventToTrigger;
   [SerializeField] float _secondsDelay = 0f;
