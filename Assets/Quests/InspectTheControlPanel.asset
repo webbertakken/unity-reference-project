@@ -20,3 +20,8 @@ MonoBehaviour:
   - _instructions: Look at the panel
     Objectives:
     - _type: 0
+      _gameFlag: {fileID: 11400000, guid: b2490696cfce0af4dafa70fa503a8eb7, type: 2}
+  - _instructions: Look at the door
+    Objectives:
+    - _type: 0
+      _gameFlag: {fileID: 11400000, guid: 0aa7e4c49cebb8846885253176dd6f40, type: 2}

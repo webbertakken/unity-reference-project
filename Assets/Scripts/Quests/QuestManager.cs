@@ -31,4 +31,11 @@ public class QuestManager : MonoBehaviour
       Debug.LogWarning($"Could not add quest by name {questName}");
     }
   }
+
+  [ContextMenu("Progress quests")]
+  public void ProgressQuests() {
+    foreach (var activeQuest in _activeQuests) {
+      activeQuest.TryProgress();
+    }
+  }
 }
