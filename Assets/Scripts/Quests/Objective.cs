@@ -27,7 +27,7 @@ namespace Quests
             switch (_gameFlag) {
               case BooleanGameFlag booleanGameFlag:
                 return booleanGameFlag.Value;
-              case CountGameFlag countGameFlag:
+              case IntegerGameFlag countGameFlag:
                 return countGameFlag.Value == countGameFlag.RequiredValue;
               default:
                 Debug.LogWarning($"IsCompleted: Unhandled type {_type}");
@@ -46,7 +46,7 @@ namespace Quests
           switch (_gameFlag) {
             case BooleanGameFlag booleanGameFlag:
               return booleanGameFlag.name;
-            case CountGameFlag countGameFlag:
+            case IntegerGameFlag countGameFlag:
               return $"{countGameFlag.name} ({countGameFlag.Value}/{countGameFlag.RequiredValue})";
             default:
               Debug.LogWarning($"ToString: Unhandled GameFlag type ${_gameFlag}");

@@ -38,8 +38,8 @@ namespace Flags
         case BooleanGameFlag booleanGameFlag:
           booleanGameFlag.Set(_setToBoolean);
           break;
-        case CountGameFlag countGameFlag:
-          countGameFlag.Modify(_modifyBy);
+        case IntegerGameFlag countGameFlag:
+          countGameFlag.Add(_modifyBy);
           break;
         default:
           Debug.LogWarning($"Unable to update \"{_gameFlagToSet}\" by ColliderTrigger.");
